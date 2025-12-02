@@ -21,13 +21,17 @@
             text-decoration: none;
             color: #fff;
         }
+        .btn{
+            color: #fff;
+            text-decoration: none;
+        }
     </style>
 </head>
 
 <body>
     <?php include '../infrastructure/config.php'; ?>
     <div class="container my-5">
-        <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>New course</button>
+        <a href="courses_create.php"class="btn btn-primary"><i class="fa-solid fa-plus"></i>New course</a>
         <table class="table table-hover mt-3">
             <tr>
                 <th>id</th>
