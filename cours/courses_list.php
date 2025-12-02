@@ -67,6 +67,7 @@
                 </tr>
                 <?php
             }
+            $conn->close();
            ?>
 
         </table>

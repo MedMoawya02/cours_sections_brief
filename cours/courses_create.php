@@ -2,6 +2,23 @@
 insert
 lastid
 //insere loop section -->
+<?php
+$errorMessage="";
+ include '../infrastructure/config.php' ;
+if(isset($_POST["save"])){
+    $title=$_POST['title'];
+    $description=$_POST['description'];
+    $level=$_POST['level'];
+    if(empty($title)||empty($description)){
+       $errorMessage= "<div class='alert alert-danger'>Please fill out all course details (Title, Description, and select a Level).</div>";
+    }else{
+        $sql="INSERT into course (title,description,niveu) VALUES('$title','$description','$level')";
+        if($conn->query($sql)){
+            header("Location: courses_list.php");
+        }
+    }
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,8 +62,9 @@ lastid
             <div id="sections">
                 
             </div>
+            <?php echo $errorMessage; ?>
             <button class="btn btn-success mt-3" id="btnAddSection" type="button" ><i class="fa-solid fa-plus"></i>Add section</button><br>
-            <button class="btn btn-secondary mt-3" id="btnSave" type="button" ><i class="fa-solid fa-plus"></i>Save</button>
+            <button class="btn btn-secondary mt-3" id="btnSave" type="submit" name="save" ><i class="fa-solid fa-plus"></i>Save</button>
         </form>
     </div>
     
