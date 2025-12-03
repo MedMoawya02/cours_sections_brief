@@ -55,7 +55,7 @@
                         <td><?php echo $row['description']?></td>
                         <td><?php echo $row['niveu']?></td>
                         <td><button class="btn btn-success"><a href="">Edit</a></button>
-                        <button class="btn btn-danger"><a href="">Delete</a></button>
+                        <button class="btn btn-danger"><a href="courses_delete.php?id=<?php echo $row['course_id']?>">Delete</a></button>
                     </td> 
                    </tr>
                    <?php

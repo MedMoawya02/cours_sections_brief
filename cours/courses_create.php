@@ -14,6 +14,25 @@ if(isset($_POST["save"])){
     }else{
         $sql="INSERT into course (title,description,niveu) VALUES('$title','$description','$level')";
         if($conn->query($sql)){
+            $last_Id=$conn->insert_id;
+            if(isset($_POST["SectionTitle"],$_POST["content"] ,$_POST["position"])){
+                $sections_titles=$_POST["SectionTitle"];
+                $sections_content=$_POST["content"];
+                $sections_position=$_POST["position"];
+                $count=count($sections_titles);
+                $stmt=$conn->prepare("INSERT INTO sections (course_id,title_section,content_section,position) VALUES(?,?,?,?)");
+                $stmt->bind_param("issi",$last_Id,$title,$content,$position);
+                for($i=0;$i<$count;$i++){
+                   $title=$sections_titles[$i];
+                   $content=$sections_content[$i];
+                   $position=$sections_position[$i];
+                   if(!empty($title)){
+                    $stmt->execute();
+                   }
+                    
+                }
+                $stmt->close();
+            }
             header("Location: courses_list.php");
         }
     }
