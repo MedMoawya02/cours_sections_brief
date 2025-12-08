@@ -52,7 +52,7 @@
                         <td><?php echo $row['niveu'] ?></td>
                         <td><a href="courses_edit.php?id=<?php echo $row["course_id"] ?>" class="btn btn-success">Edit</a>
                             <button class="btn btn-danger"><a
-                                    href="courses_delete.php?id=<?php echo $row['course_id'] ?>">Delete</a></button>
+                                    href="destroy.php?id=<?php echo $row['course_id'] ?>">Delete</a></button>
                             <a href="section_by_group.php?course_id=<?php echo $row['course_id'] ?>"
                                 class="btn btn-primary">Sections</a>
                         </td>

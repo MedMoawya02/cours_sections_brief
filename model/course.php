@@ -58,6 +58,13 @@ function create()
 }
 
 function destroy(){
-    
+    $conn=dbConnect();
+    if(isset($_GET['id'])){
+        $id=$_GET['id'];
+        $sql="DELETE FROM course where course_id='$id'";
+        if($conn->query($sql)){
+            header("location:index.php");
+        }
+    }
 }
 ?>
