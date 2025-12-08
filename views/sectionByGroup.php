@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,60 +13,54 @@
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Courses</title>
-
-    <style>
-        table {
+</head>
+ <style>
+        table{
             text-align: center;
         }
-
-        td a {
+        td a{
             text-decoration: none;
             color: #fff;
         }
-
-        .btn {
+        .btn{
             color: #fff;
             text-decoration: none;
         }
     </style>
-</head>
-
 <body>
     <div class="container my-5">
-        <a href="create.php" class="btn btn-primary"><i class="fa-solid fa-plus"></i>New course</a>
+        <h1>All Sections:</h1>
         <table class="table table-hover mt-3">
             <tr>
                 <th>id</th>
                 <th>Title</th>
-                <th>Description</th>
-                <th>Level</th>
+                <th>Content</th>
+                <th>Position</th>
                 <th>Actions</th>
             </tr>
-            <?php
-            if ($courses && $courses->num_rows > 0) {
-                while ($row = $courses->fetch_assoc()) {
+            <?php 
+                if($result->num_rows > 0) {
+                    while($row=$result->fetch_assoc()){
+                        ?>
+                            <tr>
+                                <td><?php echo $row['id_section'] ?></td>
+                                <td><?php echo $row['title_section']?></td>
+                                <td><?php echo $row['content_section'] ?></td>
+                                <td><?php echo $row['position']?></td>
+                                <td>
+                                    <a href="#" class="btn btn-success">Edit</a>
+                                    <a href="delete_section.php?section_id=<?php echo $row['id_section']?>" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        <?php
+                    }
+                }else{
                     ?>
                     <tr>
-                        <td><?php echo $row['course_id'] ?></td>
-                        <td><?php echo $row['title'] ?></td>
-                        <td><?php echo $row['description'] ?></td>
-                        <td><?php echo $row['niveu'] ?></td>
-                        <td><a href="edit.php?id=<?php echo $row["course_id"] ?>" class="btn btn-success">Edit</a>
-                            <button class="btn btn-danger"><a
-                                    href="destroy.php?id=<?php echo $row['course_id'] ?>">Delete</a></button>
-                            <a href="sections.php?course_id=<?php echo $row['course_id'] ?>"
-                                class="btn btn-primary">Sections</a>
-                        </td>
+                         <td colspan="4" style="text-align: center;">No section for this course.</td>
                     </tr>
                     <?php
                 }
-            } else {
-                ?>
-                <tr>
-                    <td colspan="4" style="text-align: center;">No records found.</td>
-                </tr>
-                <?php
-            }
             ?>
 
         </table>
