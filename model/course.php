@@ -57,14 +57,36 @@ function create()
     //
 }
 
-function destroy(){
-    $conn=dbConnect();
-    if(isset($_GET['id'])){
-        $id=$_GET['id'];
-        $sql="DELETE FROM course where course_id='$id'";
-        if($conn->query($sql)){
+function destroy()
+{
+    $conn = dbConnect();
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $sql = "DELETE FROM course where course_id='$id'";
+        if ($conn->query($sql)) {
             header("location:index.php");
         }
     }
+}
+
+function edit($id,$title,$description,$level)
+{
+    $conn=dbConnect();
+    $sql=$conn->prepare("UPDATE course set
+    title=?,
+    description=?,
+    niveu=?
+    where course_id=?
+    ");
+   $sql->bind_param("sssi", $title, $description, $level, $id);
+    $sql->execute();
+    $sql->close();
+}
+function view($id)
+{
+    $conn = dbConnect();
+    $sql = "SELECT * FROM course WHERE course_id='$id'";
+    $result=$conn->query($sql);
+    return $result->fetch_assoc();
 }
 ?>

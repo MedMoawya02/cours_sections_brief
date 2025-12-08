@@ -50,7 +50,7 @@
                         <td><?php echo $row['title'] ?></td>
                         <td><?php echo $row['description'] ?></td>
                         <td><?php echo $row['niveu'] ?></td>
-                        <td><a href="courses_edit.php?id=<?php echo $row["course_id"] ?>" class="btn btn-success">Edit</a>
+                        <td><a href="edit.php?id=<?php echo $row["course_id"] ?>" class="btn btn-success">Edit</a>
                             <button class="btn btn-danger"><a
                                     href="destroy.php?id=<?php echo $row['course_id'] ?>">Delete</a></button>
                             <a href="section_by_group.php?course_id=<?php echo $row['course_id'] ?>"
