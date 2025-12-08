@@ -32,7 +32,7 @@
 
 <body>
     <div class="container my-5">
-        <a href="../cours_sections_brief/views/create_course.php" class="btn btn-primary"><i class="fa-solid fa-plus"></i>New course</a>
+        <a href="create.php" class="btn btn-primary"><i class="fa-solid fa-plus"></i>New course</a>
         <table class="table table-hover mt-3">
             <tr>
                 <th>id</th>

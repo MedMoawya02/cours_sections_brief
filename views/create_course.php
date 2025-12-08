@@ -15,10 +15,10 @@
 </head>
 
 <body>
-    <?php include '../infrastructure/config.php' ?>
+   
     <div class="container my-5">
         <h1>Add course :</h1>
-        <form action="courses_create.php" method="post">
+        <form action="store.php" method="post">
 
             <div class="mb-3">
                 <label class="form-label">Title:</label>
