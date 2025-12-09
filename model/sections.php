@@ -26,4 +26,21 @@ function destroySection(){
 
     }
 }
+
+function editSection($id,$title,$content,$position){
+    $conn=dbConect();
+    $sql=$conn->prepare("UPDATE sections set title_section=?,content_section=?,position=? where id_section=?");
+    $sql->bind_param("ssii",$title,$content,$position,$id);
+    $sql->execute();
+    $sql->close();
+    header("Location: sections.php?course_id=" . $_POST['course_id']);
+exit;
+
+}
+function viewSection($id){
+    $conn=dbConect();
+    $sql="SELECT * FROM sections WHERE id_section='$id'";
+    $result=$conn->query($sql);
+    return $result->fetch_assoc();
+}
 ?>

@@ -40,3 +40,23 @@ function listeSectionByGroup(){
    
    require_once "../cours_sections_brief/views/sectionByGroup.php";
 }
+
+function editSectionAction(){
+   $id=$_GET['section_id'];
+   $section=viewSection($id);
+   require_once "../cours_sections_brief/views/edit_section.php";
+}
+function updateSectionAction(){
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+        header("Location: index.php");
+        exit;
+    }
+/*     var_dump($_POST); */
+    $id=$_POST['id'];
+    $title=$_POST['title'];
+    $content=$_POST['content'];
+    $position=$_POST['position'];
+   /* extract($_POST); */
+   editSection($id,$title,$content,$position);
+
+}

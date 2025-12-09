@@ -48,7 +48,7 @@
                                 <td><?php echo $row['content_section'] ?></td>
                                 <td><?php echo $row['position']?></td>
                                 <td>
-                                    <a href="#" class="btn btn-success">Edit</a>
+                                    <a href="editSection.php?section_id=<?= $row['id_section']?>" class="btn btn-success">Edit</a>
                                     <a href="deleteSection.php?section_id=<?= $row['id_section']?>&course_id=<?= $row['course_id']?>" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
