@@ -49,7 +49,7 @@
                                 <td><?php echo $row['position']?></td>
                                 <td>
                                     <a href="#" class="btn btn-success">Edit</a>
-                                    <a href="delete_section.php?section_id=<?php echo $row['id_section']?>" class="btn btn-danger">Delete</a>
+                                    <a href="deleteSection.php?section_id=<?= $row['id_section']?>&course_id=<?= $row['course_id']?>" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                         <?php

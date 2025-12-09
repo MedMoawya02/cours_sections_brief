@@ -31,6 +31,12 @@ function updateAction(){
 
 //sections
 function listeSectionByGroup(){
-   $result=listSectionByGroup();
+   if(isset($_GET['course_id'])){
+      $id=$_GET['course_id'];
+      $result=listSectionByGroup($id);
+   }else{
+      return null;
+   }
+   
    require_once "../cours_sections_brief/views/sectionByGroup.php";
 }
