@@ -18,7 +18,7 @@
    
     <div class="container my-5">
         <h1>Add course :</h1>
-        <form action="store.php" method="post">
+        <form action="index.php?action=store" method="post">
 
             <div class="mb-3">
                 <label class="form-label">Title:</label>

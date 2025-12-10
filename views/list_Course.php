@@ -16,6 +16,7 @@
     <style>
         table {
             text-align: center;
+            margin-top: 2rem;
         }
 
         td a {
@@ -27,12 +28,16 @@
             color: #fff;
             text-decoration: none;
         }
+        h1{
+            margin-top: 1rem;
+        }
     </style>
 </head>
 
 <body>
     <div class="container my-5">
-        <a href="create.php" class="btn btn-primary"><i class="fa-solid fa-plus"></i>New course</a>
+        <a href="index.php?action=create" class="btn btn-primary"><i class="fa-solid fa-plus"></i>New course</a>
+        <h1>List of courses</h1>
         <table class="table table-hover mt-3">
             <tr>
                 <th>id</th>
@@ -50,9 +55,9 @@
                         <td><?php echo $row['title'] ?></td>
                         <td><?php echo $row['description'] ?></td>
                         <td><?php echo $row['niveu'] ?></td>
-                        <td><a href="edit.php?id=<?php echo $row["course_id"] ?>" class="btn btn-success">Edit</a>
+                        <td><a href="index.php?action=edit&id=<?php echo $row["course_id"] ?>" class="btn btn-success">Edit</a>
                             <button class="btn btn-danger"><a
-                                    href="destroy.php?id=<?php echo $row['course_id'] ?>">Delete</a></button>
+                                    href="index.php?action=destroy&id=<?php echo $row['course_id'] ?>">Delete</a></button>
                             <a href="sections.php?course_id=<?php echo $row['course_id'] ?>"
                                 class="btn btn-primary">Sections</a>
                         </td>

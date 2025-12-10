@@ -13,12 +13,17 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Courses</title>
 </head>
-
+<style>
+    .btn-danger a{
+        text-decoration: none;
+        color: #ffff;
+    }
+</style>
 <body>
 
     <div class="container my-5">
         <h1>Edit course :</h1>
-        <form action="update.php" method="post">
+        <form action="index.php?action=update" method="post">
 
             <div class="mb-3">
 
@@ -43,6 +48,8 @@
             </select>
             <button class="btn btn-secondary mt-3" id="btnSave" type="submit" name="edit"><i
                     class="fa-solid fa-plus"></i>Edit</button>
+            <button class="btn btn-danger mt-3" id="btnSave" type="button" name="back"><a href="index.php?action=list"><i class="fa-solid fa-left-long"></i>Back</a></button>   
+            
         </form>
     </div>
 
