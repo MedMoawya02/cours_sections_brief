@@ -1,6 +1,7 @@
 <?php
 require_once "../cours_sections_brief/model/course.php";
 require_once "../cours_sections_brief/model/sections.php";
+require_once "../cours_sections_brief/model/register.php";
 function listCourses(){
    $courses= listeCourseAction();
    require_once "../cours_sections_brief/views/list_Course.php";
@@ -59,4 +60,16 @@ function updateSectionAction(){
    /* extract($_POST); */
    editSection($id,$title,$content,$position);
 
+}
+
+   //partie users
+function regitserAction(){
+   require_once "../cours_sections_brief/views/registrationPage.php";
+   
+}
+function storeRegisterAction(){
+   register();
+}
+function loginAction(){
+   require_once "../cours_sections_brief/views/loginPage.php";
 }

@@ -35,7 +35,7 @@
             <div class="text-center mt-3">
                 <small>
                     Pas encore de compte ?
-                    <a href="registrationPage.php">S’inscrire</a>
+                    <a href="registration.php">S’inscrire</a>
                 </small>
             </div>
 
