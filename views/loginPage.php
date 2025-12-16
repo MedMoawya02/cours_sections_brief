@@ -1,3 +1,8 @@
+<?php
+session_start();
+$message = $_SESSION['message'] ?? null;
+unset($_SESSION['message']);
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -14,8 +19,12 @@
         <div class="card-body p-4">
 
             <h3 class="text-center mb-4">Connexion</h3>
-
-            <form action="login.php" method="POST">
+            <?php if (!empty($message)): ?>
+                <div class="alert alert-info text-center">
+                    <?= $message ?>
+                </div>
+            <?php endif; ?>
+            <form action="loginCheck.php" method="POST">
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Adresse Email</label>

@@ -1,3 +1,8 @@
+<?php 
+session_start();
+$message = $_SESSION['email'] ?? null;
+unset($_SESSION['message']);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +42,7 @@
 <body>
     <div class="container my-5">
         <a href="index.php?action=create" class="btn btn-primary"><i class="fa-solid fa-plus"></i>New course</a>
-        <h1>List of courses</h1>
+        <h1>List of courses </h1>
         <table class="table table-hover mt-3">
             <tr>
                 <th>id</th>
