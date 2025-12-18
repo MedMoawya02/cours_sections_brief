@@ -2,7 +2,9 @@
 session_start();
 $message = $_SESSION['email'] ?? null;
 $message = $_SESSION['username'] ?? null;
+$messageInscription = $_SESSION['messageInscription'] ?? null;
 unset($_SESSION['message']);
+unset($_SESSION['messageInscription']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -140,7 +142,6 @@ unset($_SESSION['message']);
     <div class="container my-5">
         <div class="card">
             <div class="card-body">
-
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h1 class="mb-0">📚 List of Courses</h1>
                     <a href="index.php?action=create" class="btn btn-primary">
@@ -148,7 +149,14 @@ unset($_SESSION['message']);
                     </a>
                 </div>
 
+
+
                 <table class="table table-hover">
+                    <?php if (!empty($messageInscription)): ?>
+                        <div class="alert alert-primary text-center">
+                            <?= htmlspecialchars($messageInscription) ?>
+                        </div>
+                    <?php endif; ?>
                     <thead>
                         <tr>
                             <th>ID</th>

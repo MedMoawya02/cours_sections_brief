@@ -1,5 +1,6 @@
 <?php
 require_once "../cours_sections_brief/controller/controller.php";
+require_once "../cours_sections_brief/controller/enrollementsController.php";
 $action = $_GET['action'] ?? 'list';
 //
 switch ($action) {
@@ -46,6 +47,11 @@ switch ($action) {
         break;
     //Authentification end
 
+    //subscribe start
+    case 'subscribe':
+        subscribeAction();
+        break;
+    //subscribe end
 
     case 'list':
     default:
