@@ -47,34 +47,18 @@ function register()
 //Login
 function loginCheck($email, $password)
 {
-    /*  session_start();
-     $conn=connecte();
-     if($_SERVER['REQUEST_METHOD']=="POST"){
-         $sql=$conn->prepare("SELECT id,password FROM users where email=?");
-         $sql->bind_param("s",$email);
-         $sql->execute();
-         $result=$sql->get_result();
-         if($result->num_rows===1){
-             $user=$result->fetch_assoc();
-             if(password_verify($password,$user['password'])){
-                 $_SESSION['userId']=$user['id'];
-                 $_SESSION['email']=$email;
-                 header("location:index.php");
-                 exit;
-             }
-         }
-     } */
     $conn = connecte();
-    $sql = $conn->prepare("SELECT id,password FROM users where email=?");
+    $sql = $conn->prepare("SELECT * FROM users where email=?");
     $sql->bind_param("s", $email);
     $sql->execute();
     $result = $sql->get_result();
-    if($result->num_rows===1){
+    if($result->num_rows==1){
         $user=$result->fetch_assoc();
         if(password_verify($password,$user['password'])){
             return[
                 'success'=>true,
                 'userId'=>$user['id'],
+                'username'=>$user['userName'],
                 'email'=>$email,
             ];
         }

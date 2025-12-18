@@ -13,38 +13,99 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Section</title>
 </head>
+<style>
+    body {
+        background-color: #f5f7fa;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    h1 {
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    label {
+        font-weight: 500;
+    }
+
+    .form-control {
+        border-radius: 8px;
+    }
+
+    .input-group-text {
+        background-color: #0d6efd;
+        color: #fff;
+        border-radius: 8px 0 0 8px;
+    }
+
+    textarea.form-control {
+        border-radius: 0 8px 8px 0;
+    }
+
+    .btn {
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .btn i {
+        margin-right: 6px;
+    }
+</style>
 
 <body>
 
     <div class="container my-5">
-        <h1>Edit section :</h1>
-        <form action="updateSection.php" method="post">
+        <div class="card">
+            <div class="card-body">
 
-            <div class="mb-3">
-                <input type="hidden" class="form-control" id="formGroupExampleInput" placeholder="Title..." name="id" value="<?= $section['id_section']?>">
-                <input type="hidden" class="form-control" id="formGroupExampleInput" placeholder="Title..." name="course_id" value="<?= $section['course_id']?>">
-            </div>
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1>✏️ Edit Section</h1>
+                    <a href="sections.php?course_id=<?= $section['course_id'] ?>" class="btn btn-secondary">
+                        <i class="fa-solid fa-left-long"></i> Back to Sections
+                    </a>
+                </div>
 
-            <div class="mb-3">
-                <label class="form-label">Title:</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Title..." name="title" value="<?= $section['title_section']?>">
-            </div>
+                <form action="updateSection.php" method="post">
 
-            <div class="input-group">
-                <span class="input-group-text">Content</span>
-                <textarea class="form-control" aria-label="With textarea" name="content"><?= $section['content_section']?></textarea>
-            </div>
+                    <input type="hidden" name="id" value="<?= $section['id_section'] ?>">
+                    <input type="hidden" name="course_id" value="<?= $section['course_id'] ?>">
 
-            <div class="mb-3">
-                <label class="form-label">Position:</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Position..." name="position" value="<?= $section['position']?>">
+                    <div class="mb-3">
+                        <label class="form-label">Section Title</label>
+                        <input type="text" class="form-control" name="title" placeholder="Title..."
+                            value="<?= $section['title_section'] ?>" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Content</label>
+                        <textarea class="form-control" rows="4" name="content"
+                            required><?= $section['content_section'] ?></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Position</label>
+                        <input type="number" class="form-control" name="position" value="<?= $section['position'] ?>"
+                            min="1" required>
+                    </div>
+
+                    <button class="btn btn-primary" type="submit" name="edit">
+                        <i class="fa-solid fa-save"></i> Update Section
+                    </button>
+
+                </form>
+
             </div>
-            
-            <button class="btn btn-secondary mt-3" id="btnSave" type="submit" name="edit"><i
-                    class="fa-solid fa-plus"></i>Edit</button>
-        </form>
+        </div>
     </div>
 
 </body>
+
 
 </html>

@@ -14,45 +14,106 @@
     <title>Courses</title>
 </head>
 <style>
-    .btn-danger a{
-        text-decoration: none;
-        color: #ffff;
+    <style>
+    body {
+        background-color: #f5f7fa;
+        font-family: 'Segoe UI', sans-serif;
     }
+
+    h1 {
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+
+    .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    label {
+        font-weight: 500;
+    }
+
+    .form-control,
+    .form-select {
+        border-radius: 8px;
+    }
+
+    .input-group-text {
+        background-color: #0d6efd;
+        color: #fff;
+        border-radius: 8px 0 0 8px;
+    }
+
+    textarea.form-control {
+        border-radius: 0 8px 8px 0;
+    }
+
+    .btn {
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .btn i {
+        margin-right: 6px;
+    }
+
+    a.btn {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .btn-danger a {
+        color: #fff;
+        text-decoration: none;
+    }
+</style>
+
 </style>
 <body>
 
     <div class="container my-5">
-        <h1>Edit course :</h1>
-        <form action="index.php?action=update" method="post">
+        <div class="card">
+            <div class="card-body">
 
-            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1 class="mb-0">✏️ Edit Course</h1>
+                    <a href="index.php?action=list" class="btn btn-danger">
+                        <i class="fa-solid fa-left-long"></i> Back
+                    </a>
+                </div>
 
-                <input type="hidden" class="form-control" id="formGroupExampleInput" placeholder="Title..." name="id" value="<?= $course['course_id']?>">
-            </div>
+                <form action="index.php?action=update" method="post">
 
-            <div class="mb-3">
-                <label class="form-label">Title:</label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Title..." name="title" value="<?= $course['title']?>">
-            </div>
+                    <input type="hidden" name="id" value="<?= $course['course_id'] ?>">
 
-            <div class="input-group">
-                <span class="input-group-text">Description</span>
-                <textarea class="form-control" aria-label="With textarea" name="description"><?= $course['description']?></textarea>
-            </div>
+                    <div class="mb-3">
+                        <label class="form-label">Title</label>
+                        <input type="text" class="form-control" placeholder="Course title"
+                               name="title" value="<?= $course['title'] ?>" required>
+                    </div>
 
-            <select class="form-select mt-3" aria-label="Default select example" name="level" >
-                <option selected ><?=$course['niveu']?></option>
-                <option value="Débutant">Débutant</option>
-                <option value="Intermédiaire">Intermédiaire</option>
-                <option value="Avancé">Avancé</option>
-            </select>
-            <button class="btn btn-secondary mt-3" id="btnSave" type="submit" name="edit"><i
-                    class="fa-solid fa-plus"></i>Edit</button>
-            <button class="btn btn-danger mt-3" id="btnSave" type="button" name="back"><a href="index.php?action=list"><i class="fa-solid fa-left-long"></i>Back</a></button>   
-            
-        </form>
-    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea class="form-control" rows="4"
+                                  name="description" required><?= $course['description'] ?></textarea>
+                    </div>
 
-</body>
+                    <div class="mb-4">
+                        <label class="form-label">Level</label>
+                        <select class="form-select" name="level" required>
+                            <option selected><?= $course['niveu'] ?></option>
+                            <option value="Débutant">Débutant</option>
+                            <option value="Intermédiaire">Intermédiaire</option>
+                            <option value="Avancé">Avancé</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary" type="submit" name="edit">
+                            <i class="fa-solid fa-save"></i> Update Course
+
 
 </html>

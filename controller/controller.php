@@ -61,12 +61,10 @@ function updateSectionAction()
       header("Location: index.php");
       exit;
    }
-   /*     var_dump($_POST); */
    $id = $_POST['id'];
    $title = $_POST['title'];
    $content = $_POST['content'];
    $position = $_POST['position'];
-   /* extract($_POST); */
    editSection($id, $title, $content, $position);
 
 }
@@ -82,7 +80,9 @@ function storeRegisterAction()
    register();
 }
 
+
 //login page
+
 function loginAction()
 {
    require_once "../cours_sections_brief/views/loginPage.php";
@@ -97,13 +97,19 @@ function loginCheckAction()
       $result = loginCheck($email, $password);
       if ($result['success']) {
          $_SESSION['userId'] = $result['userId'];
+         $_SESSION['username'] = $result['username'];
          $_SESSION['email'] = $result['email'];
          header("location:index.php");
          exit;
       }
       $_SESSION['message'] = $result['message'];
-      header("Location: /cours_sections_brief/views/loginPage.php");
+      header("Location: /cours_sections_brief/index.php?action=login");
       exit;
    }
 
 }
+function logout(){
+   session_destroy();
+   header("Location: /cours_sections_brief/index.php?action=login");
+}
+

@@ -24,7 +24,7 @@ unset($_SESSION['message']);
                     <?= $message ?>
                 </div>
             <?php endif; ?>
-            <form action="loginCheck.php" method="POST">
+            <form action="index.php?action=loginCheck" method="POST">
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Adresse Email</label>
@@ -44,7 +44,7 @@ unset($_SESSION['message']);
             <div class="text-center mt-3">
                 <small>
                     Pas encore de compte ?
-                    <a href="registration.php">S’inscrire</a>
+                    <a href="index.php?action=register">S’inscrire</a>
                 </small>
             </div>
 
