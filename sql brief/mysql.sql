@@ -54,3 +54,8 @@ CREATE TABLE enrollments(
     FOREIGN KEY (userId) REFERENCES users(Id) ON UPDATE CASCADE ON DELETE CASCADE,
     enrolled_at DATETIME DEFAULT CURRENT_TIMESTAMP
 )
+
+
+-- 
+SELECT courseId,COUNT(userId) FROM enrollments 
+GROUP BY courseId;

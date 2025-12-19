@@ -1,6 +1,7 @@
 <?php
 require_once "../cours_sections_brief/controller/controller.php";
 require_once "../cours_sections_brief/controller/enrollementsController.php";
+require_once "../cours_sections_brief/controller/statistiques.php";
 $action = $_GET['action'] ?? 'list';
 //
 switch ($action) {
@@ -68,7 +69,11 @@ switch ($action) {
         unsubscribAction();
         break;
 
-
+    //Statitsiques
+    case 'statistiques':
+        allCards();
+        break;
+     //
     case 'list':
     default:
         listCourses();

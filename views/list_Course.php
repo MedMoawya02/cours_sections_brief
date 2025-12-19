@@ -4,7 +4,7 @@ $message = $_SESSION['email'] ?? null;
 $message = $_SESSION['username'] ?? null;
 $messageInscription = $_SESSION['messageInscription'] ?? null;
 //userId
-$userId= $_SESSION['userId'] ?? null;
+$userId = $_SESSION['userId'] ?? null;
 unset($_SESSION['message']);
 unset($_SESSION['messageInscription']);
 ?>
@@ -114,29 +114,53 @@ unset($_SESSION['messageInscription']);
         background-color: #e5e7eb;
         color: #111827;
     }
+
     .nav-link {
-    color: #374151;
-}
+        color: #374151;
+    }
 
-.nav-link:hover {
-    color: #0d6efd;
-}
+    .nav-link:hover {
+        color: #0d6efd;
+    }
 
-.nav-link.active {
-    color: #0d6efd;
-    font-weight: 600;
-}
-
+    .nav-link.active {
+        color: #0d6efd;
+        font-weight: 600;
+    }
 </style>
 
 <body>
     <!-- header start -->
-    <!-- <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+   
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
+
+            <!-- Logo -->
             <a class="navbar-brand fw-bold" href="index.php?action=list">
                 📚 CoursesApp
             </a>
 
+            <!-- Navigation links -->
+            <ul class="navbar-nav ms-4 d-flex flex-row gap-3">
+                <li class="nav-item">
+                    <a class="nav-link fw-medium" href="index.php?action=statistiques">
+                        Acceuill
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-medium" href="index.php?action=list">
+                        All Courses
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-medium" href="index.php?action=myCourses&user=<?php echo $userId ?>">
+                        My Courses
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Right side -->
             <div class="ms-auto d-flex align-items-center gap-3">
                 <?php if (!empty($_SESSION['username'])): ?>
                     <span class="text-muted small">
@@ -147,48 +171,10 @@ unset($_SESSION['messageInscription']);
                 <a href="index.php?action=logout" class="btn btn-sm btn-logout">
                     <i class="fa-solid fa-right-from-bracket"></i> Logout
                 </a>
-
             </div>
+
         </div>
-    </nav> -->
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container">
-
-        <!-- Logo -->
-        <a class="navbar-brand fw-bold" href="index.php?action=list">
-            📚 CoursesApp
-        </a>
-
-        <!-- Navigation links -->
-        <ul class="navbar-nav ms-4 d-flex flex-row gap-3">
-            <li class="nav-item">
-                <a class="nav-link fw-medium" href="index.php?action=list">
-                    All Courses
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link fw-medium" href="index.php?action=myCourses&user=<?php echo $userId ?>">
-                    My Courses
-                </a>
-            </li>
-        </ul>
-
-        <!-- Right side -->
-        <div class="ms-auto d-flex align-items-center gap-3">
-            <?php if (!empty($_SESSION['username'])): ?>
-                <span class="text-muted small">
-                    <?= htmlspecialchars($_SESSION['username']) ?>
-                </span>
-            <?php endif; ?>
-
-            <a href="index.php?action=logout" class="btn btn-sm btn-logout">
-                <i class="fa-solid fa-right-from-bracket"></i> Logout
-            </a>
-        </div>
-
-    </div>
-</nav>
+    </nav>
 
 
     <!-- header end -->
