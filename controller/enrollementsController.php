@@ -18,4 +18,22 @@ function subscribeAction()
     header("Location: index.php?action=list");
     exit;
 }
+
+//ALL users courses subscribed
+function showCoursesAction(){
+    session_start();
+    $userId = $_SESSION['userId'];
+    $courses=showCourses($userId);
+    require_once "../cours_sections_brief/views/myCourses.php";
+    
+}
+
+//usubscrib
+function unsubscribAction(){
+    session_start();
+    $courseId=$_GET['course_id'];
+    $userId=$_SESSION['userId'];
+    unsubscrib($courseId,$userId);
+    header("Location: index.php?action=myCourses");
+}
 ?>

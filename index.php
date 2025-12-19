@@ -53,6 +53,22 @@ switch ($action) {
         break;
     //subscribe end
 
+    //mycourses start
+    case 'myCourses':
+        showCoursesAction();
+        break;
+    //mycourses end
+
+    //subscribe start
+    case 'subscribe':
+        subscribeAction();
+        break;
+    //subscribe end
+    case 'unsubscribe':
+        unsubscribAction();
+        break;
+
+
     case 'list':
     default:
         listCourses();

@@ -38,4 +38,37 @@ function subscribe($userId, $courseId)
    
 }
 
+//function pour voir tous les courses de l'utilisateur 
+function showCourses($id){
+    $conn=connecteToDb();
+     $stmt=$conn->prepare(" SELECT 
+            c.course_id,
+            c.title,
+            c.description,
+            c.niveu
+        FROM enrollments e
+        INNER JOIN course c ON c.course_id = e.courseId
+        WHERE e.userID = ?
+    ") 
+       ;
+    $stmt->bind_param("i",$id);
+    $stmt->execute();
+
+    $result=$stmt->get_result();
+
+    $stmt->close();
+    $conn->close();
+    return $result;
+
+}
+
+//for unsubscrib
+function unsubscrib($courseId,$userId){
+    $conn=connecteToDb();
+    $stmt=$conn->prepare("DELETE FROM  `enrollments` WHERE courseId=? AND userId=? ");
+    $stmt->bind_param("ii",$courseId,$userId);
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+}
 ?>
