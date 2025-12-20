@@ -2,11 +2,15 @@
 require_once "../cours_sections_brief/controller/controller.php";
 require_once "../cours_sections_brief/controller/enrollementsController.php";
 require_once "../cours_sections_brief/controller/statistiques.php";
-$action = $_GET['action'] ?? 'list';
+$action = $_GET['action'] ?? 'statistiques';
 //
 switch ($action) {
 
     //courses routage start
+
+     case 'list':
+        listCourses();
+        break;
     case 'create':
         createAction();
         break;
@@ -69,14 +73,9 @@ switch ($action) {
         unsubscribAction();
         break;
 
-    //Statitsiques
-    case 'statistiques':
-        allCards();
-        break;
      //
-    case 'list':
     default:
-        listCourses();
+        allCards();
         break;
 }
 ?>

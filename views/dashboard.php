@@ -45,6 +45,35 @@ session_start();
         h2 {
             font-weight: 600;
         }
+
+         .btn {
+        border-radius: 8px;
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+        a.btn {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .navbar {
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .navbar-brand {
+            font-size: 1.2rem;
+        }
+
+        .btn-logout {
+            border: 1px solid #d1d5db;
+            color: #374151;
+            background-color: #374151;
+        }
+
+        .btn-logout:hover {
+            background-color: #e5e7eb;
+            color: #111827;
+        }
     </style>
 </head>
 
@@ -70,7 +99,7 @@ session_start();
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-medium" href="index.php?action=myCourses&user=<?php echo $userId ?>">
+                    <a class="nav-link fw-medium" href="index.php?action=myCourses">
                         My Courses
                     </a>
                 </li>
@@ -102,7 +131,7 @@ session_start();
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <p class="text-muted mb-1">Total Courses</p>
-                            <h4><?php echo $nbrOfCourses?></h4>
+                            <h4><?php echo $nbrOfCourses ?></h4>
                         </div>
                         <div class="icon-box bg-primary">
                             <i class="fa fa-book"></i>
@@ -127,37 +156,37 @@ session_start();
             </div>
 
             <!-- Card 3 -->
-    <div class="col-md-6">
-    <div class="card dashboard-card p-3">
-        <div class="card-body">
-            <h6 class="mb-3 text-muted">
-                📊 Inscriptions par cours
-            </h6>
+            <div class="col-md-6">
+                <div class="card dashboard-card p-3">
+                    <div class="card-body">
+                        <h6 class="mb-3 text-muted">
+                            📊 Inscriptions par cours
+                        </h6>
 
-            <table class="table table-sm table-hover mb-0">
-                <thead>
-                    <tr>
-                        <th>Course</th>
-                        <th class="text-end">Inscriptions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php while($row = $nbrInscriByGrp->fetch_assoc()): ?>
-                        <tr>
-                            <td><?= htmlspecialchars($row['title']) ?></td>
-                            <td class="text-end">
-                                <span class="badge bg-warning text-dark">
-                                    <?= $row['COUNT(enrollments.userId)']; ?>
-                                </span>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
+                        <table class="table table-sm table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Course</th>
+                                    <th class="text-end">Inscriptions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php while ($row = $nbrInscriByGrp->fetch_assoc()): ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($row['title']) ?></td>
+                                        <td class="text-end">
+                                            <span class="badge bg-warning text-dark">
+                                                <?= $row['COUNT(enrollments.userId)']; ?>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
 
-        </div>
-    </div>
-</div>
+                    </div>
+                </div>
+            </div>
 
 
             <!-- Card 4 -->
@@ -165,39 +194,140 @@ session_start();
                 <div class="card dashboard-card p-3">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <p class="text-muted mb-1">Users</p>
-                            <h4>20</h4>
+                            <p class="text-muted mb-1">Most Popular Course</p>
+
+                            <?php if (!empty($populaireCourse)): ?>
+                                <h5 class="mb-1 fw-bold">
+                                    <?= htmlspecialchars($populaireCourse['title']) ?>
+                                </h5>
+                                <span class="badge bg-danger">
+                                    🔥 <?= $populaireCourse['total_inscription'] ?> inscriptions
+                                </span>
+                            <?php else: ?>
+                                <span class="text-muted">No data</span>
+                            <?php endif; ?>
                         </div>
-                        <div class="icon-box bg-danger">
-                            <i class="fa fa-users"></i>
+
+                        <div class="icon-box bg-danger text-white">
+                            <i class="fa fa-fire"></i>
                         </div>
                     </div>
                 </div>
             </div>
 
+
             <!-- Card 5 -->
             <div class="col-md-3">
                 <div class="card dashboard-card p-3">
-                    <p class="text-muted mb-1">Enrollments</p>
-                    <h4>45</h4>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <p class="text-muted mb-1">Average Sections</p>
+                            <h4><?= number_format($avgSections['avg_sections'], 0) ?></h4>
+                        </div>
+
+                        <div class="icon-box bg-primary text-white">
+                            <i class="fa fa-layer-group"></i>
+                        </div>
+                    </div>
                 </div>
             </div>
+
 
             <!-- Card 6 -->
-            <div class="col-md-3">
+            <div class="col-md-6 mb-4">
                 <div class="card dashboard-card p-3">
-                    <p class="text-muted mb-1">Completed Courses</p>
-                    <h4>8</h4>
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="mb-0 text-muted">
+                                📚 Courses with more than 5 sections
+                            </h6>
+                            <div class="icon-box bg-success text-white">
+                                <i class="fa fa-layer-group"></i>
+                            </div>
+                        </div>
+
+                        <table class="table table-sm table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Course</th>
+                                    <th class="text-end">Sections</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if ($fiveSections->num_rows > 0): ?>
+                                    <?php while ($row = $fiveSections->fetch_assoc()): ?>
+                                        <tr>
+                                            <td><?= htmlspecialchars($row['title']) ?></td>
+                                            <td class="text-end">
+                                                <span class="badge bg-success">
+                                                    <?= $row['total_sections'] ?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="2" class="text-center text-muted">
+                                            No course has more 5 sections
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
 
+
             <!-- Card 7 -->
-            <div class="col-md-3">
+            <div class="col-md-4 mb-4">
                 <div class="card dashboard-card p-3">
-                    <p class="text-muted mb-1">Pending Courses</p>
-                    <h4>3</h4>
+                    <div class="card-body">
+
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="text-muted mb-0">
+                                Users registered this year
+                            </h6>
+                            <div class="icon-box bg-success text-white">
+                                <i class="fa fa-users"></i>
+                            </div>
+                        </div>
+
+                        <table class="table table-sm table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th class="text-end">Cours</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if ($usersSubscribedThisYear->num_rows > 0): ?>
+                                    <?php while ($user = $usersSubscribedThisYear->fetch_assoc()): ?>
+                                        <tr>
+                                            <td><?= htmlspecialchars($user['username']) ?></td>
+                                            <td class="text-end">
+                                                <span class="badge bg-success">
+                                                    <?= $user['total_courses'] ?>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    <?php endwhile; ?>
+                                <?php else: ?>
+                                    <tr>
+                                        <td colspan="2" class="text-center text-muted">
+                                            No users
+                                        </td>
+                                    </tr>
+                                <?php endif; ?>
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
+
 
             <!-- Card 8 -->
             <div class="col-md-3">
@@ -208,20 +338,7 @@ session_start();
             </div>
 
             <!-- Card 9 -->
-            <div class="col-md-6">
-                <div class="card dashboard-card p-3">
-                    <p class="text-muted mb-1">Last Login</p>
-                    <h5><?= date("d M Y - H:i") ?></h5>
-                </div>
-            </div>
 
-            <!-- Card 10 -->
-            <div class="col-md-6">
-                <div class="card dashboard-card p-3">
-                    <p class="text-muted mb-1">System Status</p>
-                    <h5 class="text-success">Online</h5>
-                </div>
-            </div>
 
         </div>
     </div>
